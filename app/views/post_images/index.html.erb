@@ -3,7 +3,7 @@
    <%= link_to post_image_path (post_image.id) do  %>
      <%= image_tag post_image.get_image %><!--一覧画面の画像をクリックすると詳細画面に飛ぶ-->
    <% end %>  
-   <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+   <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
    <p>ショップ名：<%= post_image.shop_name %></p>    <!--post_image変数のshop_nameカラムを表示-->
    <p>説明：<%= post_image.caption %></p>
    <p>ユーザーネーム：<%= post_image.user.name %></p>  <!--user  = User.find(post_image.user_id).    user.name.   と同じ意味らしい！アソシエーションを設定しているからこの記述-->
