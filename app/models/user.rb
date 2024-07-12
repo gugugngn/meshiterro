@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
 
  has_many :post_images, dependent: :destroy
- 
+ has_many :post_comments, dependent: :destroy  
  has_one_attached :profile_image
  
  def get_profile_image(width, height)     # get_profile_imageメソッドに(width, height)という引数を設定

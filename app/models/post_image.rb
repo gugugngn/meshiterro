@@ -1,6 +1,7 @@
 class PostImage < ApplicationRecord# ここは投稿画像の管理用モデルの設定ファイル
   has_one_attached :image    #post_imageモデルにActiveStorageを使って画像を持たせている
   belongs_to :user
+  has_many :post_comments, dependent: :destroy
 
   def get_image
     unless image.attached?
