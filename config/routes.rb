@@ -4,6 +4,7 @@ root to: "homes#top"
 get 'homes/about' => 'homes#about', as: 'about'
 
 resources :post_images, only: [:new, :create, :index, :show, :destroy] do
+   resource :favorite, only: [:create, :destroy]   # 単数形にすると、/:idがURLに含まれなくなります。
    resources :post_comments, only: [:create, :destroy]
   end
 resources :users, only: [:show, :edit, :update]

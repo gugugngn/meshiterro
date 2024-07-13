@@ -1,0 +1,14 @@
+<% post_images.each do |post_image| %>     <!--元々@post_imagesコントローラから渡された@post_images変数内(PostImage.all)から1つずつ取り出して、post_image変数へ格納。-->
+ <div>
+   <%= link_to post_image_path (post_image.id) do  %>  <!--投稿した写真をクリックすると、詳細画面に飛ぶようにリンクを作成している-->
+     <%= image_tag post_image.get_image %>    <!--一覧画面の画像をクリックすると詳細画面に飛ぶ-->
+   <% end %>  
+   <p>投稿ユーザー画像：<%= image_tag post_image.user.get_profile_image(100,100) %></p>
+   <p>ショップ名：<%= post_image.shop_name %></p>    <!--post_image変数のshop_nameカラムを表示-->
+   <p>説明：<%= post_image.caption %></p>
+   <p>ユーザーネーム：<%= post_image.user.name %></p>     <!--user  = User.find(post_image.user_id).    user.name.   と同じ意味らしい！アソシエーションを設定しているからこの記述-->
+        <!--@post_image.user⇨ 特定の投稿画像(@post_image)に紐づいたユーザーの情報を取得している-->
+   <p><%= link_to "#{post_image.post_comments.count}コメント",post_image_path(post_image.id) %></p>
+ </div>
+ <% end %>
+ <%= paginate post_images %>   <!--投稿された画像分だけpaginateする？-->

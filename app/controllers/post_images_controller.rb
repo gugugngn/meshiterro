@@ -7,12 +7,15 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)  # フォームに入力されたデータ(shop_name や caption,image など)が、@post_image に格納。post_image_params` メソッドで、 `params` オブジェクトから必要な属性をセット。そのためにはストロングパラメータとして定義が必要。
     @post_image.user_id = current_user.id   #投稿データに、今ログイン中のユーザーの ID を持たせている
-    @post_image.save
-    redirect_to post_images_path
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
   end
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.all.page(params[:page])
   end
 
   def show
